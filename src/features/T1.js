@@ -17,16 +17,26 @@ function T1() {
     }
 
     const login = async() => {
-        const resp = await fetch("https://localhost:8443/api/v1/auth/login", {
-            method: "POST",
-            body: JSON.stringify({username: "annasmith",
-                                 password: "password"}),
-            headers: {'Accept': 'application/json',
-                      'Content-Type': 'application/json'}
-        });
-        console.log(resp);
-        const data = await resp.json();
-        console.log(data);
+        try {
+            const resp = await fetch("https://localhost:8443/api/v1/auth/login", {
+                method: "POST",
+                body: JSON.stringify({username: "annasmith",
+                                    password: "password"}),
+                headers: {'Accept': 'application/json',
+                        'Content-Type': 'application/json'}
+            })
+            console.log("resp",resp);
+            const data = await resp.json();
+            console.log("data",data);
+            console.log("token", data.token);
+            console.log("issuedAt", data.issuedAt);
+            console.log("expiresAt", data.expiresAt);
+            console.log("refreshToken", data.refreshToken);
+            
+        }
+        catch(err) {
+            console.error("err",err.message);
+        }
     }
 
     return (
