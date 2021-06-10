@@ -1,10 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { authActions }  from '../../store/AuthSlice';
+import { authActions, authDataSel }  from '../../store/AuthSlice';
 
 function T1() {
 
     const dispatch = useDispatch();
+    const authData = useSelector(authDataSel);
 
     const fetchData = async () => {
         const resp = await fetch("https://jsonplaceholder.typicode.com/posts");
