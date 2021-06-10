@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 import CounterDemo from "./features/CounterDemo/CounterDemo";
-import T1 from "./features/T1";
+import T1 from "./test/T1/T1";
 import './App.css';
 
 function App() {
