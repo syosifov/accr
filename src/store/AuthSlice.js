@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    authData: null
+    authData: {}
 }
 
 const authSlice = createSlice({
@@ -12,7 +12,7 @@ const authSlice = createSlice({
             state.authData = action.payload;
         },
         lgt: (state) => {
-            state.authData = null;
+            state.authData = {};
         }
     }
 });

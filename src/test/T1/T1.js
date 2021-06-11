@@ -15,10 +15,20 @@ function T1() {
     }
 
     const fetchCompanies = async () => {
-        const resp = await fetch("https://localhost:8443/api/companies");
-        console.log(resp);
-        const data = await resp.json();
-        console.log(data);
+        // 'Authorization': 'Bearer '+'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbm5hc21pdGgiLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9BQ0MifV0sImlkIjoyODEsImlhdCI6MTYyMzM5ODAwNSwiZXhwIjoxNjI0MjYyMDA1fQ.CSjyFW1T6FpU8uoZ3Lwx_9y2wMtRl0yKwB0sHkTgfxgIUeMXtSzftzmaO8MBfIsbw8LK1Dc9i5A-R12P8JLkCw'
+        try {
+            const resp = await fetch("https://localhost:8443/api/companies/2",{
+                headers: {'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+authData.token}
+            });
+            console.log(resp);
+            const data = await resp.json();
+            console.log(data);
+        }
+        catch(err) {
+            console.error(err.message);
+        }
     }
 
     const login = async() => {
@@ -45,11 +55,30 @@ function T1() {
         }
     }
 
+    const refresh = async () => {
+        try {
+            const resp = await fetch("https://localhost:8443/api/v1/auth/refresh", {
+                    method: "POST",
+                    body: JSON.stringify({refreshToken: authData.refreshToken}),
+                    headers: {'Accept': 'application/json',
+                              'Content-Type': 'application/json'}
+                });
+            console.log("resp",resp);
+            const data = await resp.json();
+            dispatch(authActions.lgn(data));
+            console.log("data",data);
+        }
+        catch(err) {
+            console.error("err",err.message);
+        }
+    }
+
     return (
         <div>
             <button onClick={fetchData}>Get Posts</button>        
             <button onClick={fetchCompanies}>Get Companies</button>
             <button onClick={login}>Login</button>
+            <button onClick={refresh}>Refresh</button>
         </div>
     )
 }
