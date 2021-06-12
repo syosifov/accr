@@ -17,10 +17,10 @@ function T1() {
     const fetchCompanies = async () => {
         // 'Authorization': 'Bearer '+'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbm5hc21pdGgiLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9BQ0MifV0sImlkIjoyODEsImlhdCI6MTYyMzM5ODAwNSwiZXhwIjoxNjI0MjYyMDA1fQ.CSjyFW1T6FpU8uoZ3Lwx_9y2wMtRl0yKwB0sHkTgfxgIUeMXtSzftzmaO8MBfIsbw8LK1Dc9i5A-R12P8JLkCw'
         try {
-            const resp = await fetch("https://localhost:8443/api/companies/2",{
+            const resp = await fetch("https://localhost:8443/api/companies",{
                 headers: {'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+authData.token}
+                          'Content-Type': 'application/json',
+                          'Authorization': 'Bearer '+authData.token}
             });
             console.log(resp);
             const data = await resp.json();
@@ -36,11 +36,14 @@ function T1() {
             const resp = await fetch("https://localhost:8443/api/v1/auth/login", {
                 method: "POST",
                 body: JSON.stringify({username: "annasmith",
-                                    password: "password"}),
+                                      password: "password"}),
                 headers: {'Accept': 'application/json',
-                        'Content-Type': 'application/json'}
+                          'Content-Type': 'application/json'}
             })
             console.log("resp",resp);
+            if(!resp.ok) {
+                throw new Error('Login failed');
+            }
             const data = await resp.json();
             dispatch(authActions.lgn(data));
             console.log("data",data);
@@ -64,6 +67,9 @@ function T1() {
                               'Content-Type': 'application/json'}
                 });
             console.log("resp",resp);
+            if(!resp.ok) {
+                throw new Error('Refresh failed');
+            }
             const data = await resp.json();
             dispatch(authActions.lgn(data));
             console.log("data",data);
