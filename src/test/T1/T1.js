@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { authActions, authDataSel }  from '../../store/AuthSlice';
 
+import * as C from '../../C'
+
 function T1() {
 
     const dispatch = useDispatch();
@@ -17,12 +19,15 @@ function T1() {
     const fetchCompanies = async () => {
         // 'Authorization': 'Bearer '+'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbm5hc21pdGgiLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiUk9MRV9BRE1JTiJ9LHsiYXV0aG9yaXR5IjoiUk9MRV9BQ0MifV0sImlkIjoyODEsImlhdCI6MTYyMzM5ODAwNSwiZXhwIjoxNjI0MjYyMDA1fQ.CSjyFW1T6FpU8uoZ3Lwx_9y2wMtRl0yKwB0sHkTgfxgIUeMXtSzftzmaO8MBfIsbw8LK1Dc9i5A-R12P8JLkCw'
         try {
-            const resp = await fetch("https://localhost:8443/api/companies",{
+            const resp = await fetch(C.COMPANIES+'/2' ,{
                 headers: {'Accept': 'application/json',
                           'Content-Type': 'application/json',
                           'Authorization': 'Bearer '+authData.token}
             });
             console.log(resp);
+            if(!resp.ok) {
+                throw new Error('Request failed');
+            }
             const data = await resp.json();
             console.log(data);
         }
@@ -33,7 +38,7 @@ function T1() {
 
     const login = async() => {
         try {
-            const resp = await fetch("https://localhost:8443/api/v1/auth/login", {
+            const resp = await fetch(C.LOGIN, {
                 method: "POST",
                 body: JSON.stringify({username: "annasmith",
                                       password: "password"}),
@@ -60,7 +65,7 @@ function T1() {
 
     const refresh = async () => {
         try {
-            const resp = await fetch("https://localhost:8443/api/v1/auth/refresh", {
+            const resp = await fetch(C.REFRESH, {
                     method: "POST",
                     body: JSON.stringify({refreshToken: authData.refreshToken}),
                     headers: {'Accept': 'application/json',
