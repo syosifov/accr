@@ -154,15 +154,24 @@ function T1() {
         }
     }
 
-    const decode = () => {
+    const decode = (tkn) => {
         console.log("*** decode ***")
-        let token = authData.token;
-        const decoded = jwt(token);
+        // let token = authData.token;
+        const decoded = jwt(tkn);
         console.log("decodet",decoded);
         console.log("authorites",decoded.authorities);
         let date = new Date();
         date.setTime(decoded.exp*1000);
         console.log("exp", date);
+        return decoded;
+    }
+
+    const getRoles = () => {
+        let decoded = decode(authData.token);
+        let aRoles = decoded.authorities;
+        let saRoles = aRoles.map(x => x.authority);
+        console.log("roles", saRoles);
+        return saRoles;
     }
 
     return (
@@ -172,7 +181,9 @@ function T1() {
             <button onClick={fetchCompanies}>Get Companies</button>
             <button onClick={login}>Login</button>
             <button onClick={refresh}>Refresh</button>
-            <button onClick={decode}>Decode Token</button>
+            <button onClick={() => decode(authData.token)}>Decode Token</button>
+            <button onClick={() => decode(authData.refreshToken)}>Decode Refresh Token</button>
+            <button onClick={getRoles}>Get Roles</button>
         </div>
     )
 }
