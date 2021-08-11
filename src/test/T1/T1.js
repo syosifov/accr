@@ -17,8 +17,9 @@ function T1() {
     }
 
     const fetchCompany = async () => {
+        console.log("*** fetchCompany ***");
         const currTime = new Date().getTime();
-        console.log("Time left:", authData.expiresAt - currTime);
+        console.log("Time left:", authData.tokenExpiresAt - currTime);
         const token = await checkTolen();
         try {
             const resp = await fetch(C.COMPANIES + '/2', {
@@ -43,8 +44,9 @@ function T1() {
 
 
     const fetchCompanies = async () => {
+        console.log("*** fetchCompanies ***");
         const currTime = new Date().getTime();
-        console.log("Time left:", authData.expiresAt - currTime);
+        console.log("Time left:", authData.tokenExpiresAt - currTime);
         const token = await checkTolen();
         try {
             const resp = await fetch(C.COMPANIES + '', {
@@ -67,8 +69,9 @@ function T1() {
     }
 
     const checkTolen = async() => {
+        console.log("*** checkToken ***");
         const currTime = new Date().getTime();
-        const timeLeft = authData.expiresAt - currTime;
+        const timeLeft = authData.tokenExpiresAt - currTime;
         console.log("checkTolen", "timeLeft", timeLeft);
         if(timeLeft < 1000) {
             const token = await refresh();
@@ -78,6 +81,7 @@ function T1() {
     }
 
     const login = async () => {
+        console.log("*** login ***");
         try {
             const resp = await fetch(C.LOGIN, {
                 method: "POST",
@@ -124,7 +128,7 @@ function T1() {
     }
 
     const refresh = async () => {
-        console.log("refresh")
+        console.log("*** refresh ***")
         try {
             const resp = await fetch(C.REFRESH, {
                 method: "POST",
