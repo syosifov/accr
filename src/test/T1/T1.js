@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { authActions, authDataSel } from '../../store/AuthSlice';
+import jwt from 'jwt-decode'
 
 import * as C from '../../C'
 
@@ -153,6 +154,17 @@ function T1() {
         }
     }
 
+    const decode = () => {
+        console.log("*** decode ***")
+        let token = authData.token;
+        const decoded = jwt(token);
+        console.log("decodet",decoded);
+        console.log("authorites",decoded.authorities);
+        let date = new Date();
+        date.setTime(decoded.exp*1000);
+        console.log("exp", date);
+    }
+
     return (
         <div>
             <button onClick={fetchData}>Get Posts</button>
@@ -160,6 +172,7 @@ function T1() {
             <button onClick={fetchCompanies}>Get Companies</button>
             <button onClick={login}>Login</button>
             <button onClick={refresh}>Refresh</button>
+            <button onClick={decode}>Decode Token</button>
         </div>
     )
 }
