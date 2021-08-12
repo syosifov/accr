@@ -100,17 +100,52 @@ function T1() {
                 throw new Error('Login failed');
             }
             const data = await resp.json();
-            dispatch(authActions.lgn(data));
-            logData(data);
+            getData(data);
+            // logData(data);
         }
         catch (err) {
             console.error("err", err.message);
         }
     }
 
+    const getData = (data) => {
+        const token = data.token;
+        const decoded = jwt(token);
+        data.tokenIssuedAt = decoded.iat * 1000;
+        data.tokenExpiresAt = decoded.exp * 1000;
+
+        let roles = [];
+        try {
+            roles = getRoles(token);
+            data.roles = roles;
+        }
+        catch (err) {
+            console.error(err);
+        }
+        
+        const dat = new Date();
+        dat.setTime(data.tokenIssuedAt);
+        data.tokenIssuedAtDat = dat.toString();
+        dat.setTime(data.tokenExpiresAt);
+        data.tokenExpiresAtDat = dat.toString();
+
+        const decodedRefreshToken = jwt(data.refreshToken);
+        data.refreshTokenIssuedAt = decodedRefreshToken.iat * 1000;
+        data.refreshTokenExpiresAt = decodedRefreshToken.exp * 1000;
+
+        dat.setTime(data.refreshTokenIssuedAt);
+        data.refreshTokenIssuedAtDat = dat.toString();
+        dat.setTime(data.refreshTokenExpiresAt);
+        data.refreshTokenExpiresAtDat = dat.toString();
+
+        dispatch(authActions.lgn(data));
+    }
+
     const logData = data => {
         console.log("data", data);
         console.log("token", data.token);
+        const decoded = jwt(data.token);
+        console.log("decoded", decoded);
         let dat = new Date();
         console.log("tokenIssuedAt", data.tokenIssuedAt);
         console.log("tokenExpiresAt", data.tokenExpiresAt);
@@ -166,8 +201,8 @@ function T1() {
         return decoded;
     }
 
-    const getRoles = () => {
-        const decoded = decode(authData.token);
+    const getRoles = (token) => {
+        const decoded = decode(token);
         let saRoles;
         try {
             let aRoles = decoded.authorities;

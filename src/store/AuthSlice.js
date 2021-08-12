@@ -3,9 +3,16 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     authData: {
         token: '',
-        issuedAt: 0,
-        expiresAt: 0,
-        refreshToken: ''
+        tokenIssuedAt: 0,
+        tokenExpiresAt: 0,
+        tokenIssuedAtDat: '',
+        tokenExpiresAtDat: '',
+        roles: [],
+        refreshToken: '',
+        refreshTokenIssuedAt: 0,
+        refreshTokenExpiresAt: 0,
+        refreshTokenIssuedAtDat: '',
+        refreshTokenExpiresAtDat: ''
     }
 }
 
