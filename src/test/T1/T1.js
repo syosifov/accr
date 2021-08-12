@@ -101,7 +101,6 @@ function T1() {
             }
             const data = await resp.json();
             getData(data);
-            // logData(data);
         }
         catch (err) {
             console.error("err", err.message);
@@ -141,28 +140,6 @@ function T1() {
         dispatch(authActions.lgn(data));
     }
 
-    const logData = data => {
-        console.log("data", data);
-        console.log("token", data.token);
-        const decoded = jwt(data.token);
-        console.log("decoded", decoded);
-        let dat = new Date();
-        console.log("tokenIssuedAt", data.tokenIssuedAt);
-        console.log("tokenExpiresAt", data.tokenExpiresAt);
-        dat.setTime(data.tokenIssuedAt);
-        console.log("dat tokenIssuedAt:", dat);
-        dat.setTime(data.tokenExpiresAt);
-        console.log("dat tokenExpiresAt", dat);
-        console.log("refreshToken", data.refreshToken);    
-        console.log("refreshTokenIssuedAt", data.refreshTokenIssuedAt);
-        console.log("refreshTokenExpiresAt", data.refreshTokenExpiresAt);    
-        dat.setTime(data.refreshTokenIssuedAt);
-        console.log("dat refreshTokenIssuedAt:", dat);
-        dat.setTime(data.refreshTokenExpiresAt);
-        console.log("dat refreshTokenExpiresAt:", dat);
-        
-    }
-
     const refresh = async () => {
         console.log("*** refresh ***")
         try {
@@ -179,8 +156,7 @@ function T1() {
                 throw new Error('Refresh failed');
             }
             const data = await resp.json();
-            dispatch(authActions.lgn(data));
-            logData(data);
+            getData(data);
             return data.token;
         }
         catch (err) {
