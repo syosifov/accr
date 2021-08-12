@@ -156,22 +156,31 @@ function T1() {
 
     const decode = (tkn) => {
         console.log("*** decode ***")
-        // let token = authData.token;
-        const decoded = jwt(tkn);
-        console.log("decodet",decoded);
-        console.log("authorites",decoded.authorities);
-        let date = new Date();
-        date.setTime(decoded.exp*1000);
-        console.log("exp", date);
+        let decoded
+        try {
+            decoded = jwt(tkn);
+        }
+        catch (err) {
+            return null;
+        }
         return decoded;
     }
 
     const getRoles = () => {
-        let decoded = decode(authData.token);
-        let aRoles = decoded.authorities;
-        let saRoles = aRoles.map(x => x.authority);
-        console.log("roles", saRoles);
+        const decoded = decode(authData.token);
+        let saRoles;
+        try {
+            let aRoles = decoded.authorities;
+            saRoles = aRoles.map(x => x.authority);
+        }
+        catch (err) {
+            return null;
+        }
         return saRoles;
+    }
+
+    const logout = () => {
+        dispatch(authActions.lgt())
     }
 
     return (
@@ -184,6 +193,7 @@ function T1() {
             <button onClick={() => decode(authData.token)}>Decode Token</button>
             <button onClick={() => decode(authData.refreshToken)}>Decode Refresh Token</button>
             <button onClick={getRoles}>Get Roles</button>
+            <button onClick={logout}>Logout</button>
         </div>
     )
 }

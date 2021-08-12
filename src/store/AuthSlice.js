@@ -17,7 +17,8 @@ const authSlice = createSlice({
             state.authData = action.payload;
         },
         lgt: (state) => {
-            state.authData = {};
+            // state.authData = action.payload;
+            state.authData = initialState.authData;
         }
     }
 });
