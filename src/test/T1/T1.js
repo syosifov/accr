@@ -1,7 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { authActions, authDataSel } from '../../store/AuthSlice';
-import jwt from 'jwt-decode'
+import jwt from 'jwt-decode';
+import U from "../../utils/Utils";
+import U2 from "../../utils/U2";
+
 
 import * as C from '../../C'
 
@@ -9,6 +12,7 @@ function T1() {
 
     const dispatch = useDispatch();
     const authData = useSelector(authDataSel);
+    const uu = new U();
 
     const fetchData = async () => {
         const resp = await fetch("https://jsonplaceholder.typicode.com/posts");
@@ -21,7 +25,7 @@ function T1() {
         console.log("*** fetchCompany ***");
         const currTime = new Date().getTime();
         console.log("Time left:", authData.tokenExpiresAt - currTime);
-        const token = await checkTolen();
+        const token = await uu.checkToken()
         try {
             const resp = await fetch(C.COMPANIES + '/2', {
                 headers: {
@@ -48,7 +52,7 @@ function T1() {
         console.log("*** fetchCompanies ***");
         const currTime = new Date().getTime();
         console.log("Time left:", authData.tokenExpiresAt - currTime);
-        const token = await checkTolen();
+        const token = await checkToken();
         try {
             const resp = await fetch(C.COMPANIES + '', {
                 headers: {
@@ -69,11 +73,11 @@ function T1() {
         }
     }
 
-    const checkTolen = async() => {
+    const checkToken = async() => {
         console.log("*** checkToken ***");
         const currTime = new Date().getTime();
         const timeLeft = authData.tokenExpiresAt - currTime;
-        console.log("checkTolen", "timeLeft", timeLeft);
+        console.log("checkToken", "timeLeft", timeLeft);
         if(timeLeft < 1000) {
             const token = await refresh();
             return token;
@@ -194,6 +198,11 @@ function T1() {
         dispatch(authActions.lgt())
     }
 
+    const testU2 = () => {
+        const u2 = new U2();
+        u2.sayHello();
+    }
+
     return (
         <div>
             <button onClick={fetchData}>Get Posts</button>
@@ -205,6 +214,7 @@ function T1() {
             <button onClick={() => decode(authData.refreshToken)}>Decode Refresh Token</button>
             <button onClick={getRoles}>Get Roles</button>
             <button onClick={logout}>Logout</button>
+            <button onClick={testU2}>testU2</button>
         </div>
     )
 }
