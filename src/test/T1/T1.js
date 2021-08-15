@@ -7,7 +7,7 @@ import * as U from "../../utils/utils";
 
 import * as C from '../../C'
 
-function T1() {
+const T1 = () => {
 
     const dispatch = useDispatch();
     const authData = useSelector(authDataSel);
