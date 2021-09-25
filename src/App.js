@@ -9,22 +9,25 @@ import {
 
 import CounterDemo from "./features/CounterDemo/CounterDemo";
 import T1 from "./test/T1/T1";
+import Menu from "./components/Menu";
 import './App.css';
 
 function App() {
     return (
+        <>
+            <Menu />
+            <Router>
+                <Switch>
+                    <Route exact path="/">
+                        <CounterDemo />
+                    </Route>
+                    <Route path="/t1">
+                        <T1 />
+                    </Route>
+                </Switch>
 
-        <Router>
-            <Switch>
-                <Route exact path="/">
-                    <CounterDemo />
-                </Route>
-                <Route path="/t1">
-                    <T1 />
-                </Route>
-            </Switch>
-            
-        </Router >
+            </Router >
+        </>
     );
 }
 
