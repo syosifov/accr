@@ -10,13 +10,15 @@ import {
 import CounterDemo from "./features/CounterDemo/CounterDemo";
 import T1 from "./test/T1/T1";
 import Menu from "./components/Menu";
+import Layout from './components/UI/Layout';
+
 import './App.css';
 
 function App() {
     return (
-        <>
-            <Menu />
+        <Layout >
             <Router>
+                <Menu />
                 <Switch>
                     <Route exact path="/">
                         <CounterDemo />
@@ -27,7 +29,7 @@ function App() {
                 </Switch>
 
             </Router >
-        </>
+        </Layout >
     );
 }
 

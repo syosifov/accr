@@ -1,10 +1,36 @@
-import React from 'react'
+import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { authActions, authDataSel } from '../store/AuthSlice'
+
+import classes from './Menu.module.css';
 
 function Menu() {
+    const dispatch = useDispatch();
+    const authData = useSelector(authDataSel);
+    const tkn = authData.token;
+
     return (
-        <div>
-            <h3>Menu</h3>
-        </div>
+        <header className={classes.header}>
+            <div className={classes.logo}>ACCR</div>
+            <nav className={classes.nav}>
+                <ul>
+                    {tkn && <li>
+                        <NavLink 
+                            to='/' 
+                            activeClassName={classes.active}
+                            onClick={()=>dispatch(authActions.lgt())}
+                        >
+                            Logout
+                        </NavLink>
+                    </li>}
+                    {!tkn && <li>
+                        <NavLink to='/t1' activeClassName={classes.active}>
+                            Login
+                        </NavLink>
+                    </li>}
+                </ul>
+            </nav>
+        </header>
     )
 }
 
