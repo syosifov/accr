@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { authActions, authDataSel } from '../../store/AuthSlice';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 import * as U from "../../utils/utils";
 
@@ -11,6 +12,7 @@ const T1 = () => {
 
     const dispatch = useDispatch();
     const authData = useSelector(authDataSel);
+    const history = useHistory();
    
     const fetchData = async () => {
         const resp = await fetch("https://jsonplaceholder.typicode.com/posts");
@@ -89,6 +91,7 @@ const T1 = () => {
             }
             const data = await resp.json();
             U.upgradeAuthData(data,dispatch,authActions);
+            history.push("/");
         }
         catch (err) {
             console.error("err", err.message);

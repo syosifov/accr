@@ -7,10 +7,11 @@ import {
     useHistory,
 } from "react-router-dom";
 
-import CounterDemo from "./features/CounterDemo/CounterDemo";
 import T1 from "./test/T1/T1";
 import Menu from "./components/Menu";
 import Layout from './components/UI/Layout';
+import Main from './pages/Main';
+import Login from './pages/Login';
 
 import './App.css';
 
@@ -21,10 +22,13 @@ function App() {
                 <Menu />
                 <Switch>
                     <Route exact path="/">
-                        <CounterDemo />
+                        <Main />
                     </Route>
                     <Route path="/t1">
                         <T1 />
+                    </Route>
+                    <Route path="/login">
+                        <Login />
                     </Route>
                 </Switch>
 

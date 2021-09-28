@@ -24,7 +24,7 @@ function Menu() {
                         </NavLink>
                     </li>}
                     {!tkn && <li>
-                        <NavLink to='/t1' activeClassName={classes.active}>
+                        <NavLink to='/login' activeClassName={classes.active}>
                             Login
                         </NavLink>
                     </li>}
