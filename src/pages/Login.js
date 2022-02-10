@@ -17,6 +17,7 @@ function Login() {
     const userNameRef = useRef();
     const passwordRef = useRef();
     const [isValid, setIsValid] = useState(false);
+    const [message, setMessage] = useState("");
     console.log("isValid", isValid);
 
     const submitFormHandler = (e) => {
@@ -36,6 +37,7 @@ function Login() {
 
     const login = async (uName, password) => {
         console.log("*** login ***");
+        setMessage("");
         try {
             const resp = await fetch(C.LOGIN, {
                 method: "POST",
@@ -50,6 +52,7 @@ function Login() {
             })
             console.log("resp", resp);
             if (!resp.ok) {
+                setMessage("Login failed");
                 throw new Error('Login failed');
             }
             const data = await resp.json();
@@ -76,6 +79,7 @@ function Login() {
                 <button type="reset">Clear</button>
                 <button type="submit">OK</button>
             </div>
+            <div>{message}</div>
         </form>
     )
 }
