@@ -14,6 +14,7 @@ import Main from './pages/Main';
 import Login from './pages/Login';
 import BasicTable from './mui-test/BasicTable';
 import DataTable from './mui-test/DataTable';
+import EnhancedTable from './mui-test/EnhancedTable';
 
 import './App.css';
 
@@ -34,6 +35,9 @@ function App() {
                     </Route>
                     <Route path="/datatable">
                         <DataTable />
+                    </Route>
+                    <Route path="/enhancedtable">
+                        <EnhancedTable />
                     </Route>
                     <Route path="/login">
                         <Login />

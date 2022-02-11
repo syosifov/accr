@@ -30,6 +30,14 @@ function Menu() {
                             DataTable
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink
+                            to='/enhancedtable'
+                            activeClassName={classes.active}
+                        >
+                            EnhancedTable
+                        </NavLink>
+                    </li>
                     {tkn && <li>
                         <NavLink 
                             to='/' 
