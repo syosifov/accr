@@ -14,6 +14,14 @@ function Menu() {
             <div className={classes.logo}>ACCR</div>
             <nav className={classes.nav}>
                 <ul>
+                    <li>
+                        <NavLink
+                            to='/basictable'
+                            activeClassName={classes.active}
+                        >
+                            BasicTable
+                        </NavLink>
+                    </li>
                     {tkn && <li>
                         <NavLink 
                             to='/' 
