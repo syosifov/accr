@@ -22,6 +22,14 @@ function Menu() {
                             BasicTable
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink
+                            to='/datatable'
+                            activeClassName={classes.active}
+                        >
+                            DataTable
+                        </NavLink>
+                    </li>
                     {tkn && <li>
                         <NavLink 
                             to='/' 

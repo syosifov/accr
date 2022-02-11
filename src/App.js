@@ -13,6 +13,7 @@ import Layout from './components/UI/Layout';
 import Main from './pages/Main';
 import Login from './pages/Login';
 import BasicTable from './mui-test/BasicTable';
+import DataTable from './mui-test/DataTable';
 
 import './App.css';
 
@@ -30,6 +31,9 @@ function App() {
                     </Route>
                     <Route path="/basictable">
                         <BasicTable />
+                    </Route>
+                    <Route path="/datatable">
+                        <DataTable />
                     </Route>
                     <Route path="/login">
                         <Login />
