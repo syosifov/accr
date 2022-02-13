@@ -15,6 +15,7 @@ import Login from './pages/Login';
 import BasicTable from './mui-test/BasicTable';
 import DataTable from './mui-test/DataTable';
 import EnhancedTable from './mui-test/EnhancedTable';
+import ButtonAppBar from './mui-test/ButtonAppBar';
 
 import './App.css';
 
@@ -23,6 +24,7 @@ function App() {
         <Layout >
             <Router>
                 <Menu />
+                <ButtonAppBar />
                 <Switch>
                     <Route exact path="/">
                         <Main />
