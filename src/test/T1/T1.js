@@ -107,6 +107,36 @@ const T1 = () => {
         console.log("testToken", token);
     }
 
+    const accounts = async () => {
+        // https://stackoverflow.com/questions/35038857/setting-query-string-using-fetch-get-request
+        try {
+            const esc = encodeURIComponent;
+            const params = {
+                page: 0,
+                size: 5
+            }
+            const query = Object.keys(params).map(k => `${esc(k)}=${esc(params[k])}`).join('&')
+            const resp = await fetch(C.ACCOUNTS+'?'+query, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    // 'Authorization': 'Bearer ' + token
+                }
+            });
+            console.log(resp);
+            if (!resp.ok) {
+                throw new Error('Request failed');
+            }
+            const data = await resp.json();
+            console.log(data);
+            const accData = await data._embedded.accounts;
+            console.log(accData);
+        }
+        catch (err) {
+            console.error(err.message);
+        }
+    }
+
     return (
         <div>
             <button onClick={fetchData}>Get Posts</button>
@@ -116,6 +146,7 @@ const T1 = () => {
             <button onClick={()=>U.refresh(authData,dispatch,authActions)}>Refresh</button>
             <button onClick={logout}>Logout</button>
             <button onClick={testToken}>testToken</button>
+            <button onClick={accounts}>Get accounts</button>
         </div>
     )
 }
