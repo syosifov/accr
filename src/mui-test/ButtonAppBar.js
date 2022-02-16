@@ -13,6 +13,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useSelector, useDispatch } from 'react-redux';
 import { authActions, authDataSel } from '../store/AuthSlice'
 
+import classes from './ButtonAppBar.module.css'
+
 export default function ButtonAppBar() {
     const dispatch = useDispatch();
     const authData = useSelector(authDataSel);
@@ -44,7 +46,12 @@ export default function ButtonAppBar() {
                         component="div"
                         sx={{ flexGrow: 1 }}
                     >
-                        News
+                        <NavLink
+                            to='/datatable'
+                            activeClassName={classes.clr_active}
+                        >
+                            DataTable
+                        </NavLink>
                     </Typography>
                     <Typography
                         variant="h6"

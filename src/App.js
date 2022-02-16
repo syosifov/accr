@@ -24,7 +24,7 @@ function App() {
         <Layout >
             <Router>
                 <Menu />
-                <ButtonAppBar />
+                {/* <ButtonAppBar /> */}
                 <Switch>
                     <Route exact path="/">
                         <Main />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { authActions, authDataSel } from '../../store/AuthSlice';
+import { accActions, accDataSel } from '../../store/AccSlice';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 import * as U from "../../utils/utils";
@@ -13,6 +14,7 @@ const T1 = () => {
     const dispatch = useDispatch();
     const authData = useSelector(authDataSel);
     const history = useHistory();
+    const accData = useSelector(accDataSel);
    
     const fetchData = async () => {
         const resp = await fetch("https://jsonplaceholder.typicode.com/posts");
@@ -129,8 +131,9 @@ const T1 = () => {
             }
             const data = await resp.json();
             console.log(data);
-            const accData = await data._embedded.accounts;
-            console.log(accData);
+            const aData = await data._embedded.accounts;
+            console.log(aData);
+            dispatch(accActions.loadData(aData));
         }
         catch (err) {
             console.error(err.message);

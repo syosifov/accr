@@ -11,7 +11,15 @@ function Menu() {
 
     return (
         <header className={classes.header}>
-            <div className={classes.logo}>ACCR</div>
+            
+                <NavLink
+                    to='/'
+                    className={classes.logo}
+                    // activeClassName={classes.active}
+                >
+                    ACCR
+                </NavLink>
+            
             <nav className={classes.nav}>
                 <ul>
                     <li>
