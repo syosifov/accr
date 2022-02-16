@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from "prop-types";
 import { alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -22,6 +23,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
 
+import { accActions, accDataSel } from './../store/AccSlice' 
+
 function createData(name, calories, fat, carbs, protein) {
     return {
         name,
@@ -32,7 +35,7 @@ function createData(name, calories, fat, carbs, protein) {
     };
 }
 
-const rows = [
+const rows1 = [
     createData("Cupcake", 305, 3.7, 67, 4.3),
     createData("Donut", 452, 25.0, 51, 4.9),
     createData("Eclair", 262, 16.0, 24, 6.0),
@@ -83,32 +86,39 @@ const headCells = [
         id: "name",
         numeric: false,
         disablePadding: true,
-        label: "Dessert (100g serving)",
+        label: "Name",
     },
     {
-        id: "calories",
+        id: "assets",
         numeric: true,
         disablePadding: false,
-        label: "Calories",
+        label: "assets",
     },
     {
-        id: "fat",
+        id: "liabilities",
         numeric: true,
         disablePadding: false,
-        label: "Fat (g)",
+        label: "liabilities",
     },
     {
-        id: "carbs",
+        id: "balance",
         numeric: true,
         disablePadding: false,
-        label: "Carbs (g)",
+        label: "balance",
     },
     {
-        id: "protein",
-        numeric: true,
+        id: "at",
+        numeric: false,
         disablePadding: false,
-        label: "Protein (g)",
+        label: "at",
     },
+    {
+        id: "description",
+        numeric: false,
+        disablePadding: false,
+        label: "description",
+    },
+    
 ];
 
 function EnhancedTableHead(props) {
@@ -240,8 +250,9 @@ export default function EnhancedTable() {
     const [orderBy, setOrderBy] = React.useState("calories");
     const [selected, setSelected] = React.useState([]);
     const [page, setPage] = React.useState(0);
-    const [dense, setDense] = React.useState(false);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [dense, setDense] = React.useState(true);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const rows = useSelector(accDataSel);
 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === "asc";
@@ -358,16 +369,19 @@ export default function EnhancedTable() {
                                                 {row.name}
                                             </TableCell>
                                             <TableCell align="right">
-                                                {row.calories}
+                                                {row.assets}
                                             </TableCell>
                                             <TableCell align="right">
-                                                {row.fat}
+                                                {row.liabilities}
                                             </TableCell>
                                             <TableCell align="right">
-                                                {row.carbs}
+                                                {row.balance}
                                             </TableCell>
-                                            <TableCell align="right">
-                                                {row.protein}
+                                            <TableCell align="left">
+                                                {row.at}
+                                            </TableCell>
+                                            <TableCell align="left" style={{width: 500 }}>
+                                                {row.description}
                                             </TableCell>
                                         </TableRow>
                                     );
@@ -392,6 +406,9 @@ export default function EnhancedTable() {
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
+                    showFirstButton={true}
+                    showLastButton={true}
+                    
                 />
             </Paper>
             <FormControlLabel

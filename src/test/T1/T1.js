@@ -115,7 +115,7 @@ const T1 = () => {
             const esc = encodeURIComponent;
             const params = {
                 page: 0,
-                size: 5
+                size: 300
             }
             const query = Object.keys(params).map(k => `${esc(k)}=${esc(params[k])}`).join('&')
             const resp = await fetch(C.ACCOUNTS+'?'+query, {
