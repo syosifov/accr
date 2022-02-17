@@ -46,6 +46,22 @@ function Menu() {
                             EnhancedTable
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink
+                            to='/acctable'
+                            activeClassName={classes.active}
+                        >
+                            AccTable
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to='/t1'
+                            activeClassName={classes.active}
+                        >
+                            t1
+                        </NavLink>
+                    </li>
                     {tkn && <li>
                         <NavLink 
                             to='/' 

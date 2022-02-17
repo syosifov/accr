@@ -16,6 +16,7 @@ import BasicTable from './mui-test/BasicTable';
 import DataTable from './mui-test/DataTable';
 import EnhancedTable from './mui-test/EnhancedTable';
 import ButtonAppBar from './mui-test/ButtonAppBar';
+import AccTable from './mui-test/AccTable';
 
 import './App.css';
 
@@ -43,6 +44,9 @@ function App() {
                     </Route>
                     <Route path="/login">
                         <Login />
+                    </Route>
+                    <Route path="/acctable">
+                        <AccTable />
                     </Route>
                 </Switch>
 
