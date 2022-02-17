@@ -1,0 +1,6 @@
+npm install @mui/x-data-grid
+
+npm install material-table
+npm install @material-ui/core
+npm install @material-ui/icons
+
