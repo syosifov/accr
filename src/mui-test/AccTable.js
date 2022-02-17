@@ -15,11 +15,11 @@ const empList = [
 function AccTable() {
     const [data, setData] = useState(empList);
     const columns = [
-        { title: "ID", field: "id" },
+        { title: "ID", field: "id" , sorting: false},
         { title: "Name", field: "name", emptyValue: ()=> "Null"  },
         { title: "Email", field: "email" },
         { title: "Status", field: "status", lookup: {0: 'Active', 1: 'On Leave'} },
-        { title: "Role", field: "role", align: "right" },
+        { title: "Role", field: "role", align: "right" , defaultSort: "asc", searchable: false},
     ];
     return (
         <>
@@ -27,6 +27,11 @@ function AccTable() {
                 title="Employee Data"
                 data={data}
                 columns={columns}
+                options={{sorting: true, 
+                          search: true, 
+                          searchText: "",
+                          searchFieldAlignment: "right",
+                          searchAutoFocus: true}}
             />
         </>
     );
