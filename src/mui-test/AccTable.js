@@ -15,7 +15,7 @@ const empList = [
 function AccTable() {
     const [data, setData] = useState(empList);
     const columns = [
-        { title: "ID", field: "id" , sorting: false},
+        { title: "ID", field: "id" , sorting: false, filtering: false},
         { title: "Name", field: "name", emptyValue: ()=> "Null"  },
         { title: "Email", field: "email" },
         { title: "Status", field: "status", lookup: {0: 'Active', 1: 'On Leave'} },
@@ -31,7 +31,13 @@ function AccTable() {
                           search: true, 
                           searchText: "",
                           searchFieldAlignment: "right",
-                          searchAutoFocus: true}}
+                          searchAutoFocus: true,
+                          filtering: true, 
+                          paging: true,
+                          pageSizeOptions: [2,5,10,20,50,100],
+                          pageSize: 5,
+                          paginationType: "normal"
+                        }}
             />
         </>
     );
