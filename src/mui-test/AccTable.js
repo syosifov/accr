@@ -19,7 +19,8 @@ function AccTable() {
         { title: "Name", field: "name", emptyValue: ()=> "Null"  },
         { title: "Email", field: "email" },
         { title: "Status", field: "status", lookup: {0: 'Active', 1: 'On Leave'} },
-        { title: "Role", field: "role", align: "right" , defaultSort: "asc", searchable: false},
+        { title: "Role", field: "role", align: "right" , 
+                         defaultSort: "asc", searchable: false, export: false},
     ];
     return (
         <>
@@ -36,7 +37,10 @@ function AccTable() {
                           paging: true,
                           pageSizeOptions: [2,5,10,20,50,100],
                           pageSize: 5,
-                          paginationType: "normal"
+                          paginationType: "normal",
+                          exportButton: true,
+                          exportAllData: true,
+                          exportFileName: "TableData"
                         }}
             />
         </>
