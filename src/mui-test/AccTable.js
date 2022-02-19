@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
+import GetAppIcon from '@material-ui/icons/GetApp';
 
 const empList = [
     { id: 1, name: "Neeraj", email: "neeraj@gmail.com", status: 0, role: 1 },
@@ -38,6 +39,14 @@ function AccTable() {
                 title="Employee Data"
                 data={data}
                 columns={columns}
+                actions={[
+                    {
+                        icon: () => <GetAppIcon />,
+                        tooltip: "Click me",
+                        onClick: (e, data) => console.log(data),
+                        // isFreeAction:true
+                    },
+                ]}
                 options={{
                     sorting: true,
                     search: true,
