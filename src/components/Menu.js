@@ -16,36 +16,8 @@ function Menu() {
             <nav className={classes.nav}>
                 <ul>
                     <li>
-                        <NavLink 
-                            to="/" 
-                            exact
-                            activeClassName={classes.active}
-                        >
+                        <NavLink to="/" exact activeClassName={classes.active}>
                             Home
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/basictable"
-                            activeClassName={classes.active}
-                        >
-                            BasicTable
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/datatable"
-                            activeClassName={classes.active}
-                        >
-                            DataTable
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/enhancedtable"
-                            activeClassName={classes.active}
-                        >
-                            EnhancedTable
                         </NavLink>
                     </li>
                     <li>

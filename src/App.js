@@ -12,12 +12,7 @@ import Menu from "./components/Menu";
 import Layout from './components/UI/Layout';
 import Main from './pages/Main';
 import Login from './pages/Login';
-import BasicTable from './mui-test/BasicTable';
-import DataTable from './mui-test/DataTable';
-import EnhancedTable from './mui-test/EnhancedTable';
-import ButtonAppBar from './mui-test/ButtonAppBar';
-import AccTable from './mui-test/AccTable';
-
+import AccTable from './components/UI/AccTable';
 import './App.css';
 
 function App() {
@@ -32,15 +27,6 @@ function App() {
                     </Route>
                     <Route path="/t1">
                         <T1 />
-                    </Route>
-                    <Route path="/basictable">
-                        <BasicTable />
-                    </Route>
-                    <Route path="/datatable">
-                        <DataTable />
-                    </Route>
-                    <Route path="/enhancedtable">
-                        <EnhancedTable />
                     </Route>
                     <Route path="/login">
                         <Login />
