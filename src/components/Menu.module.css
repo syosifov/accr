@@ -1,5 +1,5 @@
 .header {
-    width: 100%;
+    /* width: 100; */
     height: 3rem;
     display: flex;
     padding: 0 10%;
@@ -10,7 +10,7 @@
   
   .logo {
     font-size: 2rem;
-    color: white;
+    color: #e6fcfc;
   }
   
   .nav ul {

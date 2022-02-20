@@ -12,7 +12,7 @@ import Menu from "./components/Menu";
 import Layout from './components/UI/Layout';
 import Main from './pages/Main';
 import Login from './pages/Login';
-
+import AccTable from './components/UI/AccTable';
 import './App.css';
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
         <Layout >
             <Router>
                 <Menu />
+                {/* <ButtonAppBar /> */}
                 <Switch>
                     <Route exact path="/">
                         <Main />
@@ -29,6 +30,9 @@ function App() {
                     </Route>
                     <Route path="/login">
                         <Login />
+                    </Route>
+                    <Route path="/acctable">
+                        <AccTable />
                     </Route>
                 </Switch>
 
