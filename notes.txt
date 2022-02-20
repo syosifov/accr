@@ -1,0 +1,16 @@
+npm install @mui/x-data-grid
+
+npm install material-table
+npm install @material-ui/core
+npm install @material-ui/icons
+
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
+
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+/>
+

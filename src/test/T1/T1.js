@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { authActions, authDataSel } from '../../store/AuthSlice';
+import { accActions, accDataSel } from '../../store/AccSlice';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 import * as U from "../../utils/utils";
@@ -13,6 +14,7 @@ const T1 = () => {
     const dispatch = useDispatch();
     const authData = useSelector(authDataSel);
     const history = useHistory();
+    const accData = useSelector(accDataSel);
    
     const fetchData = async () => {
         const resp = await fetch("https://jsonplaceholder.typicode.com/posts");
@@ -107,6 +109,37 @@ const T1 = () => {
         console.log("testToken", token);
     }
 
+    const accounts = async () => {
+        // https://stackoverflow.com/questions/35038857/setting-query-string-using-fetch-get-request
+        try {
+            const esc = encodeURIComponent;
+            const params = {
+                page: 0,
+                size: 300
+            }
+            const query = Object.keys(params).map(k => `${esc(k)}=${esc(params[k])}`).join('&')
+            const resp = await fetch(C.ACCOUNTS+'?'+query, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    // 'Authorization': 'Bearer ' + token
+                }
+            });
+            console.log(resp);
+            if (!resp.ok) {
+                throw new Error('Request failed');
+            }
+            const data = await resp.json();
+            console.log(data);
+            const aData = await data._embedded.accounts;
+            console.log(aData);
+            dispatch(accActions.loadData(aData));
+        }
+        catch (err) {
+            console.error(err.message);
+        }
+    }
+
     return (
         <div>
             <button onClick={fetchData}>Get Posts</button>
@@ -116,6 +149,7 @@ const T1 = () => {
             <button onClick={()=>U.refresh(authData,dispatch,authActions)}>Refresh</button>
             <button onClick={logout}>Logout</button>
             <button onClick={testToken}>testToken</button>
+            <button onClick={accounts}>Get accounts</button>
         </div>
     )
 }

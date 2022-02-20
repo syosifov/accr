@@ -1,0 +1,14 @@
+.a {
+    text-decoration: none;
+    color: #88dfdf;
+  }
+  
+  .nav a:hover,
+  .nav a:active,
+  .nav a.active {
+    color: #e6fcfc;
+  }
+
+  .clr_active {
+    color: #fff;  
+  }
