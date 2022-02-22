@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import MaterialTable from "material-table";
-import GetAppIcon from '@material-ui/icons/GetApp';
-import { useSelector, useDispatch } from 'react-redux';
-import { accActions, accDataSel } from './../../store/AccSlice' 
-
+import GetAppIcon from "@material-ui/icons/GetApp";
+import { useSelector, useDispatch } from "react-redux";
+import { accActions, accDataSel } from "./../../store/AccSlice";
 
 function AccTable() {
     const [data, setData] = useState([]);
     const rows = useSelector(accDataSel);
     useEffect(() => {
         // https://stackoverflow.com/questions/59648434/material-table-typeerror-cannot-add-property-tabledata-object-is-not-extensibl
-        const editable = rows.map(o => ({ ...o }));
+        const editable = rows.map((o) => ({ ...o }));
         setData(editable);
     }, [rows]);
     const columns = [
@@ -18,13 +17,25 @@ function AccTable() {
         { title: "Активи", field: "assets", align: "right" },
         { title: "Пасиви", field: "liabilities", align: "right" },
         { title: "Салдо", field: "balance", align: "right" },
-        { title: "Вид", field: "at", align: "left" },
+        {
+            title: "Вид",
+            field: "at",
+            align: "left",
+            lookup: { A: "А", L: "П", AL: "АП", C: "К" },
+        },
         {
             title: "Описание",
             field: "description",
             align: "left",
-            cellStyle: { minWidth: '500px', maxWidth: '500px' },
-            headerStyle: { minWidth: '500px', maxWidth: '500px' },
+            cellStyle: { minWidth: "500px", maxWidth: "500px" },
+            headerStyle: { minWidth: "500px", maxWidth: "500px" },
+            // render: (rowData) => {
+            //     let s = rowData.description;
+            //     if (s.length > 45) {
+            //         s = s.substr(0, 45) + "...";
+            //     }
+            //     return s;
+            // },
         },
     ];
     // const columns = [
@@ -56,11 +67,11 @@ function AccTable() {
     //         ),
     //     },
     // ];
-    
+
     return (
         <>
             <MaterialTable
-                title="Employee Data"
+                title="Сметкоплан"
                 data={data}
                 columns={columns}
                 // actions={[
@@ -72,18 +83,18 @@ function AccTable() {
                 //     },
                 // ]}
                 options={{
-                    // sorting: true,
-                    // search: true,
+                    sorting: true,
+                    search: true,
                     // searchText: "",
                     // searchFieldAlignment: "right",
-                    // searchAutoFocus: true,
+                    searchAutoFocus: true,
                     // filtering: true,
-                    // paging: true,
+                    paging: true,
                     pageSizeOptions: [2, 5, 10, 20, 50, 100],
                     pageSize: 5,
                     paginationType: "normal",
-                    // exportButton: true,
-                    // exportAllData: true,
+                    exportButton: true,
+                    exportAllData: true,
                     // exportFileName: "TableData",
                     // actionsColumnIndex: -1,
                     // addRowPosition: "first",
@@ -95,11 +106,10 @@ function AccTable() {
                     // }),
                     // grouping: true,
                     // columnsButton: true,
-                    // rowStyle: (data, index) =>
-                    //     index % 3 === 0 ? { background: "#f5f5f5" } : null,
+                    rowStyle: (data, index) =>
+                        index % 3 === 0 ? { background: "#f5f5f5" } : null,
                 }}
                 // onSelectionChange={(selectedRows) => console.log(selectedRows)}
-                
             />
         </>
     );
