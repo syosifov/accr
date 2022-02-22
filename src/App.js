@@ -14,6 +14,7 @@ import Main from './pages/Main';
 import Login from './pages/Login';
 import AccTable from './components/UI/AccTable';
 import './App.css';
+import EnhancedTable from './mui-test/EnhancedTable';
 
 function App() {
     return (
@@ -33,6 +34,9 @@ function App() {
                     </Route>
                     <Route path="/acctable">
                         <AccTable />
+                    </Route>
+                    <Route path="/enhancedtable">
+                        <EnhancedTable />
                     </Route>
                 </Switch>
 

@@ -22,6 +22,14 @@ function Menu() {
                     </li>
                     <li>
                         <NavLink
+                            to="/enhancedtable"
+                            activeClassName={classes.active}
+                        >
+                            EnhancedTable
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
                             to="/acctable"
                             activeClassName={classes.active}
                         >
