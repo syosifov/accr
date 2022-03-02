@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { authActions, authDataSel } from '../../store/AuthSlice';
 import { accActions, accDataSel } from '../../store/AccSlice';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useNavigate } from 'react-router-dom';
 
 import * as U from "../../utils/utils";
 
@@ -13,7 +13,7 @@ const T1 = () => {
 
     const dispatch = useDispatch();
     const authData = useSelector(authDataSel);
-    const history = useHistory();
+    const navigate = useNavigate();
     const accData = useSelector(accDataSel);
    
     const fetchData = async () => {
@@ -93,7 +93,7 @@ const T1 = () => {
             }
             const data = await resp.json();
             U.upgradeAuthData(data,dispatch,authActions);
-            history.push("/");
+            navigate("/");
         }
         catch (err) {
             console.error("err", err.message);
