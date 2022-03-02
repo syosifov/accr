@@ -21,7 +21,7 @@ function App() {
                 <Menu />
                 {/* <ButtonAppBar /> */}
                 <Routes>
-                    <Route exact path="/" element={<Main />}/>
+                    <Route path="/" element={<Main />}/>
                     <Route path="/t1" element={<T1 />} /> 
                     <Route path="/login" element={<Login />}/>
                     <Route path="/acctable" element={<AccTable />} />

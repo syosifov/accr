@@ -140,6 +140,15 @@ const T1 = () => {
         }
     }
 
+    const testAssign = () => {
+        const acc = {};
+        acc.description = "Third record";
+        acc.debit = "50304"
+        acc.credit = "111"
+        acc.amount = 100.00;
+        console.log("testAssign", acc)
+    }
+
     return (
         <div>
             <button onClick={fetchData}>Get Posts</button>
@@ -150,6 +159,7 @@ const T1 = () => {
             <button onClick={logout}>Logout</button>
             <button onClick={testToken}>testToken</button>
             <button onClick={accounts}>Get accounts</button>
+            <button onClick={testAssign}>Test assign</button>
         </div>
     )
 }
