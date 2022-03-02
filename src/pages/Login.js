@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { authActions, authDataSel } from '../store/AuthSlice';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useNavigate } from 'react-router-dom';
 
 import * as C from '../C';
 import * as U from '../utils/utils';
@@ -12,7 +12,7 @@ function Login() {
 
     const dispatch = useDispatch();
     const authData = useSelector(authDataSel);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const userNameRef = useRef();
     const passwordRef = useRef();
@@ -57,7 +57,7 @@ function Login() {
             }
             const data = await resp.json();
             U.upgradeAuthData(data,dispatch,authActions);
-            history.push("/");
+            navigate("/");
         }
         catch (err) {
             console.error("err", err.message);

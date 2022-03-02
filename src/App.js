@@ -2,9 +2,7 @@ import React from 'react';
 import {
     BrowserRouter as Router,
     Route,
-    Switch,
-    Link,
-    useHistory,
+    Routes,
 } from "react-router-dom";
 
 import T1 from "./test/T1/T1";
@@ -22,24 +20,13 @@ function App() {
             <Router>
                 <Menu />
                 {/* <ButtonAppBar /> */}
-                <Switch>
-                    <Route exact path="/">
-                        <Main />
-                    </Route>
-                    <Route path="/t1">
-                        <T1 />
-                    </Route>
-                    <Route path="/login">
-                        <Login />
-                    </Route>
-                    <Route path="/acctable">
-                        <AccTable />
-                    </Route>
-                    <Route path="/enhancedtable">
-                        <EnhancedTable />
-                    </Route>
-                </Switch>
-
+                <Routes>
+                    <Route exact path="/" element={<Main />}/>
+                    <Route path="/t1" element={<T1 />} /> 
+                    <Route path="/login" element={<Login />}/>
+                    <Route path="/acctable" element={<AccTable />} />
+                    <Route path="/enhancedtable" element={<EnhancedTable />}/>
+                </Routes>
             </Router >
         </Layout >
     );
