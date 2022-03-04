@@ -140,13 +140,31 @@ const T1 = () => {
         }
     }
 
-    const testAssign = () => {
+    const testAssign = async () => {
+        const token = await U.checkToken(authData,dispatch,authActions);
         const acc = {};
         acc.description = "Third record";
-        acc.debit = "50304"
+        acc.debit = "50401"
         acc.credit = "111"
         acc.amount = 100.00;
-        console.log("testAssign", acc)
+        const sacc = JSON.stringify(acc);
+        console.log("testAssign", sacc);
+        try {
+            const resp = await fetch(C.ASSIGN,{
+                method: "POST",
+                body: sacc,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+
+            });
+            console.log(resp);
+        }
+        catch (err) {
+            console.error(err.message);
+        }
     }
 
     return (
