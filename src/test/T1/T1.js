@@ -141,13 +141,17 @@ const T1 = () => {
     }
 
     const testAssign = async () => {
-        const token = await U.checkToken(authData,dispatch,authActions);
+        // const token = await U.checkToken(authData,dispatch,authActions); //TODO
+        const token = "";
+
         const acc = {};
         acc.description = "Third record";
-        acc.debit = "50401"
-        acc.credit = "111"
-        acc.amount = 100.00;
+        acc.lstAssgn = [{debit: '50301', credit: '111', value: 60, ad: null, ac: null},
+                        {debit: '50401', credit: '111', value: 40.01, ad: 20, ac: null},
+                        ]
+        acc.amount = 100.01;
         const sacc = JSON.stringify(acc);
+
         console.log("testAssign", sacc);
         try {
             const resp = await fetch(C.ASSIGN,{
