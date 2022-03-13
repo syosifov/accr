@@ -146,8 +146,8 @@ const T1 = () => {
 
         const acc = {};
         acc.description = "Third record";
-        acc.lstAssgn = [{debit: '50301', credit: '111', value: 60, ad: null, ac: null},
-                        {debit: '50401', credit: '111', value: 40.01, ad: 20, ac: null},
+        acc.lstAssgn = [{debit: '50301', credit: '111', value: 60, vm: null},
+                        {debit: '50401', credit: '111', value: 40.01, vm: 20},
                         ]
         acc.amount = 100.01;
         const sacc = JSON.stringify(acc);
@@ -157,6 +157,35 @@ const T1 = () => {
             const resp = await fetch(C.ASSIGN,{
                 method: "POST",
                 body: sacc,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+
+            });
+            console.log(resp);
+        }
+        catch (err) {
+            console.error(err.message);
+        }
+    }
+
+    const reverseAssign = async () => {
+        // const token = await U.checkToken(authData,dispatch,authActions); //TODO
+        const token = "";
+
+        const data = {};
+        data.description = "Поправка на грешка";
+        data.ledgerRecId = 2;
+        const sData = JSON.stringify(data);
+
+        console.log('reverseAssign', sData);
+
+        try {
+            const resp = await fetch(C.REVERSE,{
+                method: "POST",
+                body: sData,
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
@@ -182,6 +211,7 @@ const T1 = () => {
             <button onClick={testToken}>testToken</button>
             <button onClick={accounts}>Get accounts</button>
             <button onClick={testAssign}>Test assign</button>
+            <button onClick={reverseAssign}>Reverse assign</button>
         </div>
     )
 }
