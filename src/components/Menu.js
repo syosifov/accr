@@ -16,14 +16,14 @@ function Menu() {
             <nav className={classes.nav}>
                 <ul>
                     <li>
-                        <NavLink to="/" exact activeClassName={classes.active}>
+                        <NavLink to="/" >
                             Home
                         </NavLink>
                     </li>
                     <li>
                         <NavLink
                             to="/enhancedtable"
-                            activeClassName={classes.active}
+                            
                         >
                             EnhancedTable
                         </NavLink>
@@ -31,13 +31,13 @@ function Menu() {
                     <li>
                         <NavLink
                             to="/acctable"
-                            activeClassName={classes.active}
+                            
                         >
                             AccTable
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/t1" activeClassName={classes.active}>
+                        <NavLink to="/t1" >
                             t1
                         </NavLink>
                     </li>
@@ -45,7 +45,7 @@ function Menu() {
                         <li>
                             <NavLink
                                 to="/"
-                                activeClassName={classes.active}
+                                
                                 onClick={() => dispatch(authActions.lgt())}
                             >
                                 Logout
@@ -56,7 +56,7 @@ function Menu() {
                         <li>
                             <NavLink
                                 to="/login"
-                                activeClassName={classes.active}
+                                
                             >
                                 Login
                             </NavLink>
