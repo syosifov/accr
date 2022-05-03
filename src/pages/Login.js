@@ -86,20 +86,7 @@ function Login() {
 
     return (
         <form onSubmit={submitFormHandler}>
-            {/* <div>
-                <label htmlFor="userName">Username</label>
-                <input type="text" id="userName" required ref={userNameRef}/>
-            </div>
-            <div>
-                <label htmlFor="password" >Password</label>
-                <input type="password" id="password" required ref={passwordRef}/>
-            </div>
-            <div>
-                <button type="reset">Clear</button>
-                <button type="submit">OK</button>
-            </div>
-            <div>{message}</div> */}
-            <Grid>
+            <Grid container>
                 <Paper elevation={10} style={paperStyle}>
                     <Grid align="center">
                         <Avatar style={avatarStyle}>

@@ -62,6 +62,16 @@ function Menu() {
                             </NavLink>
                         </li>
                     )}
+                    {!tkn && (
+                        <li>
+                            <NavLink
+                                to="/signup"
+                                
+                            >
+                                Sign Up
+                            </NavLink>
+                        </li>
+                    )}
                 </ul>
             </nav>
         </header>

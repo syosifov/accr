@@ -10,6 +10,7 @@ import Menu from "./components/Menu";
 import Layout from './components/UI/Layout';
 import Main from './pages/Main';
 import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 import AccTable from './components/UI/AccTable';
 import './App.css';
 import EnhancedTable from './mui-test/EnhancedTable';
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/login" element={<Login />}/>
                     <Route path="/acctable" element={<AccTable />} />
                     <Route path="/enhancedtable" element={<EnhancedTable />}/>
+                    <Route path="/signup" element={<SignUp />}/>
                 </Routes>
             </Router >
         </Layout >
