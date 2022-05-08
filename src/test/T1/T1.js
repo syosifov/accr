@@ -146,10 +146,10 @@ const T1 = () => {
 
         const acc = {};
         acc.description = "Third record";
-        acc.lstAssgn = [{debit: '50301', credit: '111', value: 60, vm: null},
-                        {debit: '50401', credit: '111', value: 40.01, vm: 20},
+        acc.lstAssgn = [{debit: '41101', credit: '712', value: 20, vm: null},
+                        {debit: '41101', credit: '712', value: 16, vm: null},
                         ]
-        acc.amount = 100.01;
+        acc.amount = 36;
         const sacc = JSON.stringify(acc);
 
         console.log("testAssign", sacc);
