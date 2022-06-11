@@ -5,5 +5,6 @@ export const REFRESH    = URL + '/api/v1/auth/refresh';
 export const COMPANIES  = URL + '/jpa/companies';
 export const ACCOUNTS   = URL + '/api/v1/accounts';
 export const ASSIGN     = URL + '/jpa/v1/assign';
+export const SIGNUP     = URL + '/jpa/v1/signup';
 export const REVERSE    = URL + '/jpa/v1/reverse';
 

@@ -13,12 +13,33 @@ import {
     TextField,
     Typography,
 } from "@material-ui/core";
+import * as C from '../C';
+
+
 const paperStyle = {
     padding: 20,
     height: "70vh",
     width: 280,
     margin: "20px auto",
 };
+
+const register = async (sRegData) => {
+    try {
+        const resp = await fetch(C.SIGNUP,{
+            method: "POST",
+            body: sRegData,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
+
+        });
+        console.log(resp);
+    }
+    catch (err) {
+        console.error(err.message);
+    }
+}
 
 
 export const SignUp = (props) => {
@@ -38,6 +59,15 @@ export const SignUp = (props) => {
         if(!equalPass(password, password1)){
             return;
         }
+
+        const regData = {};
+        regData.username = username;
+        regData.password = password;
+        regData.email = email;
+        regData.phone = phone;
+        regData.info = info;
+        const sRegData = JSON.stringify(regData);
+        register(sRegData);
     };
 
     const equalPass = (p1,p2) => {
