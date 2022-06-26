@@ -146,10 +146,13 @@ const T1 = () => {
 
         const acc = {};
         acc.description = "Third record";
-        acc.lstAssgn = [{debit: '41101', credit: '712', value: 20, vm: null},
-                        {debit: '41101', credit: '712', value: 16, vm: null},
+        acc.lstAssgn = [{debit_acc: '41101', credit_acc: '712', amount: 20, vm: null},
+                        // {debit_acc: '41101', credit_acc: '712', amount: 16, vm: null},
                         ]
-        acc.amount = 36;
+        // acc.lstAssgn = [{debit_acc: '712', credit_acc: '41101', amount: 10, vm: null},
+        //                 {debit_acc: '41101', credit_acc: '712', amount: 16, vm: null},
+        //                 ]
+        acc.total = 36;
         const sacc = JSON.stringify(acc);
 
         console.log("testAssign", sacc);
@@ -177,7 +180,7 @@ const T1 = () => {
 
         const data = {};
         data.description = "Поправка на грешка";
-        data.ledgerRecId = 2;
+        data.ledgerRecId = 30;
         const sData = JSON.stringify(data);
 
         console.log('reverseAssign', sData);
