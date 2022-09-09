@@ -203,6 +203,38 @@ const T1 = () => {
         }
     }
 
+    const assignDept = async () => {
+        // const token = await U.checkToken(authData,dispatch,authActions); //TODO
+        const token = "";
+
+        const acc = {};
+        acc.description = "membership fee 01/2022";
+        acc.lstAssgn = [{debit_acc: '41101', credit_acc: '712', amount: 20, vm: null},
+                        {debit_acc: '41102', credit_acc: '712', amount: 10, vm: null},
+                        {debit_acc: '41103', credit_acc: '712', amount: 15, vm: null},
+                        ]
+        acc.total = 45;
+        const sacc = JSON.stringify(acc);
+
+        console.log("testAssign", sacc);
+        try {
+            const resp = await fetch(C.ASSIGN,{
+                method: "POST",
+                body: sacc,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                }
+
+            });
+            console.log(resp);
+        }
+        catch (err) {
+            console.error(err.message);
+        }
+    }
+
     return (
         <div>
             <button onClick={fetchData}>Get Posts</button>
@@ -215,6 +247,7 @@ const T1 = () => {
             <button onClick={accounts}>Get accounts</button>
             <button onClick={testAssign}>Test assign</button>
             <button onClick={reverseAssign}>Reverse assign</button>
+            <button onClick={assignDept}>Assign dept</button>
         </div>
     )
 }

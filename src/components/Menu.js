@@ -41,6 +41,11 @@ function Menu() {
                             t1
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/t2" >
+                            epay
+                        </NavLink>
+                    </li>
                     {tkn && (
                         <li>
                             <NavLink

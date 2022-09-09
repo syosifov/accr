@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import T1 from "./test/T1/T1";
+import T2 from "./test/T2"
 import Menu from "./components/Menu";
 import Layout from './components/UI/Layout';
 import Main from './pages/Main';
@@ -24,6 +25,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Main />}/>
                     <Route path="/t1" element={<T1 />} /> 
+                    <Route path="/t2" element={<T2 />} /> 
                     <Route path="/login" element={<Login />}/>
                     <Route path="/acctable" element={<AccTable />} />
                     <Route path="/enhancedtable" element={<EnhancedTable />}/>
