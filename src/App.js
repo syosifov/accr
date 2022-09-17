@@ -7,6 +7,7 @@ import {
 
 import T1 from "./test/T1/T1";
 import T2 from "./test/T2"
+import PayRequest from './test/PayRequest';
 import Menu from "./components/Menu";
 import Layout from './components/UI/Layout';
 import Main from './pages/Main';
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/" element={<Main />}/>
                     <Route path="/t1" element={<T1 />} /> 
                     <Route path="/t2" element={<T2 />} /> 
+                    <Route path="/pay" element={<PayRequest />} /> 
                     <Route path="/login" element={<Login />}/>
                     <Route path="/acctable" element={<AccTable />} />
                     <Route path="/enhancedtable" element={<EnhancedTable />}/>

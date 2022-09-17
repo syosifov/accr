@@ -11,5 +11,6 @@ export const ASSIGN     = URL + '/acc/assign/';
 export const SIGNUP     = URL + '/jpa/v1/signup';
 // export const REVERSE    = URL + '/jpa/v1/reverse';
 export const REVERSE    = URL + '/acc/reverse/';
-export const PAY_PREPARE= URL + '/subs/test/';
+export const PAY_PREPARE= URL + '/epay/test/';
+export const PAY_REQUEST= URL + '/subs/test/';
 

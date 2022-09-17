@@ -22,8 +22,14 @@ function Menu() {
                     </li>
                     <li>
                         <NavLink
+                            to="/Pay"
+                        >
+                            Pay
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
                             to="/enhancedtable"
-                            
                         >
                             EnhancedTable
                         </NavLink>

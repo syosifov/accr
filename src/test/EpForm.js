@@ -1,15 +1,22 @@
-import {React, useState, useEffect} from "react";
+import {React, useState, useEffect, useRef} from "react";
 
 function EpForm(props) {
     const [page, setPage] = useState(props.PAGE)
     const [ENCODED, setEncoded] = useState(props.ENCODED)
     const [CHECKSUM, setChecksum] = useState(props.CHECKSUM)
+    const formRef = useRef()
 
     useEffect(() => {
         setPage(props.PAGE);
         setEncoded(props.ENCODED)
         setChecksum(props.CHECKSUM)
     }, [props])
+
+    useEffect(() => {
+        if(ENCODED) {
+            formRef.current.submit()
+        }
+    }, [ENCODED])
 
     const handlePageChange = (e) => {
         setPage(e.target.value)
@@ -22,7 +29,10 @@ function EpForm(props) {
     }
 
     return (
-        <form action="https://demo.epay.bg" target="epay" method="POST">
+        <form action="https://demo.epay.bg" 
+              target="epay" 
+              method="POST"
+              ref = {formRef}>
             <input 
                 type="hidden" 
                 name="PAGE" 
@@ -36,9 +46,9 @@ function EpForm(props) {
                 type="hidden" 
                 name="CHECKSUM" 
                 value={CHECKSUM} 
-                onChange={handleChecksumChange} />
+                onChange={handleChecksumChange} 
+                />
 
-            <input type="submit" />
         </form>
     );
 }

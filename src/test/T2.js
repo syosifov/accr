@@ -4,7 +4,7 @@ import * as C from "../C";
 import EpForm from "./EpForm";
 
 const T2 = () => {
-    const [data, setData] = useState({})
+    const [data, setData] = useState({PAGE: '', ENCODED: '', CHECKSUM: ''})
     const preparePayment = async () => {
         const txt = {};
         txt.assigned_tax_id = 2;
