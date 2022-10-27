@@ -4,10 +4,10 @@ import EpForm from "./EpForm";
 
 
 function PayRequest() {
-    const [min, setMin] = useState('D460900632');
-    const [inv, setInv] = useState('');
-    const [amount, setAmount] = useState('');
-    const [descr, setDescr] = useState('');
+    const [MIN, setMin] = useState('D460900632');
+    const [INVOICE, setInv] = useState('');
+    const [AMOUNT, setAmount] = useState('');
+    const [DESCR, setDescr] = useState('');
     const [sec, setSec] = useState(3600);
     const [data, setData] = useState({PAGE: '', ENCODED: '', CHECKSUM: ''})
 
@@ -28,9 +28,9 @@ function PayRequest() {
     }
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(min,inv,amount,descr,sec)
+        console.log(MIN,INVOICE,AMOUNT,DESCR,sec)
         const token = ''
-        const stxt = JSON.stringify({min,inv,amount,descr,sec})
+        const stxt = JSON.stringify({MIN,INVOICE,AMOUNT,DESCR,sec})
         console.log("stxt",stxt)
         try {
             const resp = await fetch(C.PAY_REQUEST, {
@@ -55,13 +55,13 @@ function PayRequest() {
         <>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="minText">Идентификационен номер на търговец</label><br/>
-                <input type="text" id="minText" value={min} onChange={handleMinChange}/><br/>
+                <input type="text" id="minText" value={MIN} onChange={handleMinChange}/><br/>
                 <label htmlFor="invText">Номер на фактура</label><br/>
-                <input type="text" id="invText" value={inv} onChange={handleInvChange}/><br/>
+                <input type="text" id="invText" value={INVOICE} onChange={handleInvChange}/><br/>
                 <label htmlFor="amountText">Сума</label><br/>
-                <input type="text" id="amountText" style={{textAlign: 'right'}} value={amount} onChange={handleAmountChange}/><br/>
+                <input type="text" id="amountText" style={{textAlign: 'right'}} value={AMOUNT} onChange={handleAmountChange}/><br/>
                 <label htmlFor="descrText">Описание</label><br/>
-                <textarea id="descrText" onChange={handleDescrChange} cols="30" rows="3" value={descr} /><br/>
+                <textarea id="descrText" onChange={handleDescrChange} cols="30" rows="3" value={DESCR} /><br/>
                 <label htmlFor="secText">Срок [s]</label><br/>
                 <input type="text" id="secText" style={{textAlign: 'right'}} value={sec} onChange={handleSecChange}/><br/>
                 <button type="submit">OK</button>
