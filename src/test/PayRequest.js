@@ -7,8 +7,9 @@ function PayRequest() {
     const [MIN, setMin] = useState('D460900632');
     const [INVOICE, setInv] = useState('');
     const [AMOUNT, setAmount] = useState('');
-    const [DESCR, setDescr] = useState('');
+    const [DESCR, setDescr] = useState('test');
     const [sec, setSec] = useState(3600);
+    const [untilTime, setUntilTime] = useState('');
     const [data, setData] = useState({PAGE: '', ENCODED: '', CHECKSUM: ''})
 
     const handleMinChange = (event) => {
@@ -26,11 +27,15 @@ function PayRequest() {
     const handleSecChange = (event) => {
         setSec(event.target.value);
     }
+    const handleUntilTimeChange = (event) => {
+        setUntilTime(event.target.value);
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(MIN,INVOICE,AMOUNT,DESCR,sec)
+        console.log(MIN,INVOICE,AMOUNT,DESCR,sec,untilTime)
         const token = ''
-        const stxt = JSON.stringify({MIN,INVOICE,AMOUNT,DESCR,sec})
+        const stxt = JSON.stringify({MIN,INVOICE,AMOUNT,DESCR,sec,untilTime})
         console.log("stxt",stxt)
         try {
             const resp = await fetch(C.PAY_REQUEST, {
@@ -64,6 +69,8 @@ function PayRequest() {
                 <textarea id="descrText" onChange={handleDescrChange} cols="30" rows="3" value={DESCR} /><br/>
                 <label htmlFor="secText">Срок [s]</label><br/>
                 <input type="text" id="secText" style={{textAlign: 'right'}} value={sec} onChange={handleSecChange}/><br/>
+                <label htmlFor="expAt">Валиден до</label><br/>
+                <input type="text" id="expAt" value={untilTime} onChange={handleUntilTimeChange}/><br/>
                 <button type="submit">OK</button>
             </form>
             <EpForm 
