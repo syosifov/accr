@@ -74,7 +74,7 @@ function PayRequest() {
                 <button type="submit">OK</button>
             </form>
             <EpForm 
-                PAGE = {data.PAGE} 
+                PAGE = "paylogin" 
                 ENCODED = {data.ENCODED} 
                 CHECKSUM = {data.CHECKSUM} 
             />
